@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	fmt.Println("Building REST APIs with Go 1.22")
+	fmt.Println("Building REST APIs with Go 1.22!")
 
 	mux := http.NewServeMux() // New HTTP Multiplexer
 
