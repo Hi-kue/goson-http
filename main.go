@@ -1,4 +1,4 @@
-package goson_http
+package main
 
 import (
 	"fmt"
@@ -12,6 +12,20 @@ func main() {
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Hello World!")
+	})
+
+	mux.HandleFunc("GET /comment", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "All comments: ")
+	})
+
+	mux.HandleFunc("GET /comment/{id}", func(w http.ResponseWriter, r *http.Request) {
+		id := r.PathValue("id")
+
+		fmt.Fprintf(w, "Return a single comment for comment with id: %s ", id)
+	})
+
+	mux.HandleFunc("POST /comment", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "Posting a New Comment")
 	})
 
 	if err := http.ListenAndServe("localhost:8080", mux); err != nil {
